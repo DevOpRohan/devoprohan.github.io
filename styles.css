@@ -569,6 +569,7 @@ body {
     background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
     opacity: 0;
     transition: var(--transition-medium);
+    pointer-events: none;
 }
 
 .project-card:hover {
