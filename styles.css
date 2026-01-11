@@ -4,22 +4,32 @@
 
 /* CSS Variables */
 :root {
-    /* Colors */
-    --bg-primary: #0a0a0f;
-    --bg-secondary: #12121a;
-    --bg-tertiary: #1a1a24;
+    /* Colors - Resume Branding */
+    --bg-primary: #030A28;
+    /* DarkerNavy from Resume */
+    --bg-secondary: #050e36;
+    /* Slightly lighter navy */
+    --bg-tertiary: #0a164a;
 
     --text-primary: #ffffff;
-    --text-secondary: #a0a0b0;
-    --text-muted: #6b6b7b;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
 
-    --accent-primary: #7c3aed;
+    /* Accents - Electric & Royal Blue */
+    --accent-primary: #4f46e5;
+    /* Royal Blue-ish Indigo */
     --accent-secondary: #06b6d4;
-    --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+    /* Cyan */
+    --accent-glow: #3b82f6;
+    /* Bright Blue Glow */
+    --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 50%, #3b82f6 100%);
+    --card-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.0) 100%);
 
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(3, 10, 40, 0.7);
+    /* Darker glass */
+    --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --neon-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
 
     /* Typography */
     --font-display: 'Outfit', sans-serif;
@@ -30,9 +40,9 @@
     --container-width: min(1200px, 90vw);
 
     /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Reset & Base */
@@ -331,23 +341,40 @@ body {
 .btn-primary {
     background: var(--accent-gradient);
     color: white;
-    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-primary:hover::after {
+    left: 100%;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+    box-shadow: 0 8px 30px rgba(79, 70, 229, 0.6);
 }
 
 .btn-secondary {
-    background: var(--glass-bg);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
     border: 1px solid var(--glass-border);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-primary);
 }
 
 .hero-stats {
@@ -555,27 +582,30 @@ body {
 .project-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
     border-radius: 24px;
     padding: 2rem;
     position: relative;
     transition: var(--transition-medium);
     overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .project-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.06), transparent 40%);
     opacity: 0;
-    transition: var(--transition-medium);
+    transition: opacity 0.5s;
     pointer-events: none;
+    z-index: 2;
 }
 
 .project-card:hover {
-    border-color: rgba(124, 58, 237, 0.3);
+    border-color: rgba(79, 70, 229, 0.5);
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--glass-shadow), var(--neon-shadow);
 }
 
 .project-card:hover::before {
@@ -584,8 +614,8 @@ body {
 
 .project-featured {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
-    border-color: rgba(124, 58, 237, 0.2);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%);
+    border-color: rgba(79, 70, 229, 0.3);
 }
 
 .project-badge {
@@ -593,11 +623,14 @@ body {
     top: 1.5rem;
     right: 1.5rem;
     padding: 0.375rem 0.75rem;
-    background: var(--accent-gradient);
+    background: rgba(79, 70, 229, 0.2);
+    border: 1px solid rgba(79, 70, 229, 0.4);
+    backdrop-filter: blur(4px);
     border-radius: 100px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: white;
+    color: #a5b4fc;
+    z-index: 10;
 }
 
 .project-header {
