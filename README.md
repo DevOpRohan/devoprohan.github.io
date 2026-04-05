@@ -1,6 +1,6 @@
-# Rohan Verma - Portfolio
+# Rohan Kumar - Portfolio
 
-A modern, stunning portfolio website showcasing AI/ML projects.
+A modern portfolio website showcasing AI/ML and agentic systems work.
 
 ## 🚀 Live Site
 
@@ -32,5 +32,5 @@ This site is deployed using GitHub Pages. Push to the `main` branch to deploy.
 
 ## 📧 Contact
 
-- Email: rohanvermadev@gmail.com
+- Email: rohanve07@gmail.com
 - GitHub: [@DevOpRohan](https://github.com/DevOpRohan)

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollAnimations();
     initSmoothScroll();
+    initFooterYear();
 });
 
 /* ========================================
@@ -117,6 +118,13 @@ function initSmoothScroll() {
             }
         });
     });
+}
+
+function initFooterYear() {
+    const year = document.getElementById('current-year');
+    if (year) {
+        year.textContent = String(new Date().getFullYear());
+    }
 }
 
 /* ========================================
